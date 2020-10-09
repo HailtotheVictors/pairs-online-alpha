@@ -10,7 +10,7 @@ app.get('/',function (req, res) {
 const websocketServer = require('websocket').server;
 //const httpServer = http.createServer();
 var httpServer = http.createServer();
-httpServer.listen(PORT);
+httpServer.listen(process.env.PORT || 80);
 //httpServer.listen(9090, () => console.log('Listening on ws port 9090'));
 const wsServer = new websocketServer({
   'httpServer': httpServer
