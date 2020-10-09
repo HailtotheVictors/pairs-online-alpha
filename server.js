@@ -9,7 +9,7 @@ app.get('/',function (req, res) {
 //app.listen(5000, () => console.log('Listening on http port 5000'));
 const websocketServer = require('websocket').server;
 //const httpServer = http.createServer();
-var httpServer = http.createServer(sendSMSHandler);
+var httpServer = http.createServer();
 httpServer.listen(PORT);
 //httpServer.listen(9090, () => console.log('Listening on ws port 9090'));
 const wsServer = new websocketServer({
