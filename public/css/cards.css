@@ -1,0 +1,34 @@
+.card {
+  height: 200px;
+  width: 140px;
+  padding: 5px;
+  margin-left: 10px;
+  border-radius: 10px;
+  background-color: #444;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  flex-shrink: 0;
+}
+.cardValue {
+  height: 40%;
+  width: auto;
+  background-color: #555;
+  border-radius: 5px;
+}
+.cardSuit {
+  position: absolute;
+  height: 20%;
+  width: auto;
+  background-color: #555;
+  border-radius: 5px;
+}
+.cardSuit:nth-child(2) {
+  top: 5px;
+  left: 5px;
+}
+.cardSuit:last-of-type {
+  bottom: 5px;
+  right: 5px;
+}

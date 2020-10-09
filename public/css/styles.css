@@ -1,0 +1,639 @@
+@font-face {
+  font-family: 'Alte';
+  src: url(fonts/AlteX.ttf);
+}
+@font-face {
+  font-family: 'Roboto Mono';
+  src: url(fonts/robotomono.ttf);
+}
+body {
+  margin: 0;
+  background-color: #222;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  --player1: rgb(50,260,100);
+  --player2: rgb(63,231,136);
+  --player3: rgb(35,209,173);
+  --player4: rgb(39,180,200);
+  --player5: rgb(43,130,204);
+  --player6: rgb(78,78,218);
+}
+#startGameCont, #criticalError, #endGameCont {
+	background-size: 200% 200%;
+	animation: gradient 7s ease infinite;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+#startGameCont, #endGameCont {
+  background-image: linear-gradient(120deg,var(--player1),var(--player2),var(--player3),var(--player4),var(--player5),var(--player6));
+  z-index: 2;
+}
+#endGameCont {
+  display: none;
+}
+#criticalError {
+  background-image: linear-gradient(120deg,rgb(228,95,162),rgb(209,35,79),rgb(205,35,39),rgb(209,79,35));
+  display: none;
+  z-index: 3;
+}
+#startGameCont > div, #criticalError > span, #endGameCont > div {
+  height: auto;
+  min-height: 50px;
+  display: inline-block;
+  width: 50%;
+  background-color: #333;
+  padding: 5px;
+  border-radius: 10px;
+}
+#endGameMess {
+  padding: 3px 0;
+  color: white;
+  font-family: 'Alte', sans-serif;
+  font-size: 40px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+}
+.finalScoreCont {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+.finalScoreName, .finalScoreNumber {
+  height: 50px;
+  line-height: 50px;
+  font-family: 'Alte', sans-serif;
+  font-size: 40px;
+  padding: 0 5px;
+}
+.finalScoreCont:first-child > .finalScoreName {
+  border-radius: 5px 0 0 0;
+}
+.finalScoreCont:first-child > .finalScoreNumber {
+  border-radius: 0 5px 0 0;
+}
+.finalScoreCont:last-child > .finalScoreName {
+  border-radius: 0 0 0 5px;
+}
+.finalScoreCont:last-child > .finalScoreNumber {
+  border-radius: 0 0 5px 0;
+}
+.finalScoreName {
+  width: 100%;
+  color: white;
+}
+.finalScoreNumber {
+  width: 150px;
+  text-align: center;
+  flex-shrink: 0;
+  background-color: #444;
+}
+#criticalError > span {
+  color: white;
+  font-family: 'Alte', sans-serif;
+  font-size: 40px;
+  text-align: center;
+  width: auto;
+  line-height: 50px;
+  padding: 5px 15px;
+}
+@keyframes gradient {
+	0% { background-position: 0% 50%; }
+	50% {	background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+#error {
+  position: absolute;
+  bottom: 60px;
+  z-index: 10;
+  height: 40px;
+  width: 100%;
+  pointer-events: none;
+  display: none;
+  justify-content: center;
+}
+#error > span {
+  display: inline-block;
+  margin: auto;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  color: white;
+  font-family: 'Alte', sans-serif;
+  font-size: 24px;
+  width: auto;
+  min-width: 50px;
+  background-color: #666a;
+  padding: 5px 15px;
+  border-radius: 10px;
+  font-weight: bold;
+  pointer-events: auto;
+}
+#pairsLogo {
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  display: block;
+  margin: auto;
+}
+.startButton {
+  font-family: 'Alte', sans-serif;
+  font-size: 36px;
+  width: 100%;
+  color: white;
+  border: none;
+  padding: 5px;
+  border-radius: 5px;
+  margin-top: 5px;
+}
+.startButton:hover {
+  cursor: pointer;
+}
+.greenButton {
+  background-color: rgb(57,208,122);
+}
+.greenButton:hover {
+  background-color: rgb(51,187,110);
+}
+.blueButton {
+  background-color: rgb(43,130,204);
+}
+.blueButton:hover {
+  background-color: rgb(39,117,183);
+}
+#startGame {
+  width: 100%;
+  margin-top: 5px;
+  font-size: 30px;
+  font-family: 'Alte', sans-serif;
+  color: white;
+  background-color: rgb(5,113,148);
+  padding: 5px;
+  border-radius: 5px;
+  border: none;
+}
+#startGame:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+#joinCode {
+  width: calc(100% - 10px);
+  display: inline-block;
+  margin-top: 5px;
+  font-size: 20px;
+  font-family: 'Alte', sans-serif;
+  color: white;
+  text-align: center;
+  background-color: #777;
+  padding: 5px;
+  border-radius: 5px;
+}
+#joinInput {
+  width: 200px;
+  text-align: center;
+  font-size: 40px;
+  font-family: 'Roboto Mono', sans-serif;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #555;
+  border: none;
+  color: white;
+  letter-spacing: 5px;
+  display: block;
+  margin: auto;
+  margin-top: 5px;
+}
+#joinInput::-webkit-outer-spin-button, #joinInput::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+#joinInput[type=number] {
+  -moz-appearance: textfield;
+}
+#joinedPlayers > span, #nameChange {
+  width: calc(100% - 10px);
+  margin-top: 5px;
+  font-size: 30px;
+  height: 35px;
+  font-family: 'Alte', sans-serif;
+  color: white;
+  padding: 5px;
+  border-radius: 5px;
+  display: inline-block;
+  text-align: center;
+}
+#nameChange {
+  border: none;
+  margin-top: 0px;
+  background-color: #666;
+  border-radius: 5px 0 0 5px;
+}
+#confirmName {
+  flex-shrink: 0;
+  height: 35px;
+  width: 35px;
+  padding: 5px;
+  fill: white;
+  background-color: #666;
+  border-radius: 0 5px 5px 0;
+}
+#nameChange:hover, #confirmName:hover {
+  background-color: #777;
+}
+#confirmName:hover {
+  cursor: pointer;
+}
+#joinedPlayers > span:first-of-type {
+  background-color: var(--player1);
+}
+#joinedPlayers > span:nth-of-type(2) {
+  background-color: var(--player2);
+}
+#joinedPlayers > span:nth-of-type(3) {
+  background-color: var(--player3);
+}
+#joinedPlayers > span:nth-of-type(4) {
+  background-color: var(--player4);
+}
+#joinedPlayers > span:nth-of-type(5) {
+  background-color: var(--player5);
+}
+#joinedPlayers > span:nth-of-type(6) {
+  background-color: var(--player6);
+}
+/*table*/
+#forehead {
+  background-color: #333;
+  height: 50px;
+  width: 100%;
+}
+#mainLogo, #secoLogo {
+  height: calc(100% - 6px);
+  width: auto;
+  padding: 3px;
+  display: block;
+  margin: auto;
+}
+#secoLogo {
+  display: none;
+}
+#adaptCont {
+  height: calc(100vh - 50px);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#playerCarousel {
+  display: flex;
+  flex-shrink: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  scrollbar-color: #555 #666;
+  scrollbar-width: thin;
+}
+.playerTab {
+  height: 30px;
+  line-height: 30px;
+  padding: 5px 10px;
+  border-top: 4px solid #777;
+  width: 100%;
+  min-width: auto;
+  text-align: center;
+  white-space: nowrap;
+  display: inline-block;
+  font-family: 'Alte', sans-serif;
+  color: white;
+  font-size: 30px;
+}
+.playerTab:hover {
+  background-color: #333;
+  cursor: pointer;
+}
+.playerTab:nth-of-type(1), .playerScoreCont:nth-of-type(1) {
+  color: var(--player1);
+}
+.playerTab:nth-of-type(2), .playerScoreCont:nth-of-type(2) {
+  color: var(--player2);
+}
+.playerTab:nth-of-type(3), .playerScoreCont:nth-of-type(3) {
+  color: var(--player3);
+}
+.playerTab:nth-of-type(4), .playerScoreCont:nth-of-type(4) {
+  color: var(--player4);
+}
+.playerTab:nth-of-type(5), .playerScoreCont:nth-of-type(5) {
+  color: var(--player5);
+}
+.playerTab:nth-of-type(6), .playerScoreCont:nth-of-type(6) {
+  color: var(--player6);
+}
+.playerScoreCont {
+  border-top: 4px solid currentColor;
+  border-bottom: 4px solid currentColor;
+  width: 100%;
+  display: none;
+}
+.playerScore {
+  padding: 5px 20px;
+  height: 40px;
+  line-height: 40px;
+  font-family: 'Alte', sans-serif;
+  font-size: 30px;
+  flex-shrink: 0;
+}
+.playerSets {
+  display: flex;
+  height: 50px;
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+.playerSets > svg {
+  height: 40px;
+  width: 40px;
+  margin: 5px;
+  border-radius: 5px;
+  background-color: #333;
+}
+.playerSets > span {
+  height: 50px;
+  font-size: 24px;
+  color: inherit;
+  font-family: 'Alte', sans-serif;
+  padding: 0 3px;
+  display: inline-flex;
+  align-items: center;
+}
+#tableCont {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+#actionCont {
+  width: 20%;
+  min-width: 200px;
+  height: 100%;
+  flex-shrink: 0;
+  display: flex;
+  align-content: space-evenly;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+#vertical, #horizontal {
+  border-radius: 2px;
+  background-color: #555;
+  flex-shrink: 0;
+  display: inline-block;
+}
+#horizontal {
+  width: calc(100% - 100px);
+  margin-left: 50px;
+  height: 3px;
+}
+#vertical {
+  height: calc(100% - 100px);
+  margin-top: 50px;
+  width: 3px;
+}
+#cardsCont {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+  position: relative;
+}
+#challengeCont, #stealCont {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  height: calc(100% - 40px);
+  width: calc(100% - 40px);
+  background-color: #777d;
+  display: none;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: #777 5px 5px 10px;
+  z-index: 2;
+}
+#challengeCont > span, #stealCont > span {
+  color: #444;
+  font-family: 'Alte', sans-serif;
+  width: 100%;
+  font-size: 40px;
+  text-align: center;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.challengeRow {
+  display: flex;
+  width: calc(100% - 10px);
+  margin: auto;
+  min-height: 30px;
+}
+.challengeRow > svg {
+  padding: 3px;
+  height: 54px;
+  width: 54px;
+  flex-shrink: 0;
+  background-color: #444;
+  border-radius: 5px;
+}
+svg.selected {
+  padding: 1px !important;
+  border: 2px solid white !important;
+}
+.challengeRow > div {
+  padding: 5px;
+  height: 40px;
+  line-height: 40px;
+  width: 100%;
+  font-size: 30px;
+  color: white;
+  font-family: 'Alte', sans-serif;
+  text-align: center;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: #444;
+  color: var(--playercolor);
+}
+.challengeRow > div:hover, .challengeRow > svg:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+.challengeRow > div:last-child {
+  margin-right: 0px;
+}
+div.selected {
+  padding: 3px !important;
+  border: 2px solid white !important;
+  width: calc(100% - 4px) !important;
+}
+.challengeRow > *:nth-of-type(1), #stealFlex > div:nth-of-type(1) {
+  --playercolor: var(--player1);
+}
+.challengeRow > *:nth-of-type(2), #stealFlex > div:nth-of-type(2) {
+  --playercolor: var(--player2);
+}
+.challengeRow > *:nth-of-type(3), #stealFlex > div:nth-of-type(3) {
+  --playercolor: var(--player3);
+}
+.challengeRow > *:nth-of-type(4), #stealFlex > div:nth-of-type(4) {
+  --playercolor: var(--player4);
+}
+.challengeRow > *:nth-of-type(5), #stealFlex > div:nth-of-type(5) {
+  --playercolor: var(--player5);
+}
+.challengeRow > *:nth-of-type(6), #stealFlex > div:nth-of-type(6) {
+  --playercolor: var(--player6);
+}
+#stealFlex {
+  height: auto;
+  width: 100%;
+  display: flex;
+}
+#stealFlex > div {
+  margin-right: 10px;
+  width: 100%;
+  border: 2px solid var(--playercolor);
+  color: var(--playercolor);
+  padding: 5px;
+  background-color: #333;
+  border-radius: 5px;
+}
+#stealFlex > div:last-of-type {
+  margin-right: 0px;
+}
+#stealFlex > div > span {
+  font-family: 'Alte', sans-serif;
+  font-size: 30px;
+  display: inline-block;
+  width: 100%;
+  text-align: center;
+  padding: 3px 0;
+}
+.stealRow {
+  height: auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 3px;
+}
+.stealRow:last-child {
+  margin-bottom: 0px;
+}
+.stealBox {
+  background-color: #444;
+  height: 40px;
+  width: 70px;
+  padding: 5px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+}
+.stealBox:hover {
+  cursor: pointer;
+  background-color: #555;
+}
+div.stealBox.selected {
+  width: 70px !important;
+}
+.stealBox > svg {
+  height: 40px;
+  width: 40px;
+  border-radius: 5px;
+  background-color: #555;
+  fill: currentColor;
+}
+.stealBox:hover > svg {
+  background-color: #666;
+}
+.stealBox > div {
+  height: 80px;
+  line-height: 80px;
+  width: 30px;
+  text-align: center;
+  font-size: 24px;
+  font-family: 'Alte', sans-serif;
+  color: currentColor;
+}
+.cardHalf {
+  height: 50%;
+  height: 100%;
+  overflow-x: auto;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  scrollbar-color: #555 #666;
+  scrollbar-width: thin;
+}
+.playButtonCont {
+  flex: 0 0 100%;
+  min-height: 30px;
+}
+.playButton, .confirmButton {
+  width: 180px;
+  font-size: 36px;
+  font-family: 'Alte', sans-serif;
+  color: white;
+  margin: auto;
+  display: block;
+  border: none;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+.playButton:hover, .confirmButton:hover {
+  opacity: 0.75;
+  cursor: pointer;
+}
+.playButtonCont:first-of-type > button {
+  background-color: var(--player1);
+}
+.playButtonCont:nth-of-type(2) > button {
+  background-color: var(--player3);
+}
+.playButtonCont:nth-of-type(3) > button {
+  background-color: var(--player4);
+}
+.playButtonCont:nth-of-type(4) > button {
+  background-color: var(--player5);
+}
+.playButtonCont:nth-of-type(5) > button {
+  background-color: var(--player6);
+}
+.disabled {
+  background-color: #888 !important;
+}
+.disabled:hover {
+  opacity: 1 !important;
+  cursor: default !important;
+}
+button:focus {
+  outline: none;
+}
+#message {
+  height: 50px;
+  line-height: 50px;
+  font-size: 30px;
+  color: white;
+  background-color: #333;
+  text-align: center;
+  font-family: 'Alte', sans-serif;
+  flex-shrink: 0;
+  width: 100%;
+}
+@media only screen and (max-width: 300px) {
+  #mainLogo {
+    display: none;
+  }
+  #secoLogo {
+    display: block;
+  }
+}

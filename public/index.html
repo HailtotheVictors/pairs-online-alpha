@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="shortcut icon" href="public/assets/favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="public/scripts/script.js"></script>
+    <script src="public/scripts/carddata.js"></script>
+    <link rel="stylesheet" href="public/css/styles.css" />
+    <link rel="stylesheet" href="public/css/cards.css" />
+    <title>Pairs</title>
+  </head>
+  <body>
+    <div id="error">
+      <span></span>
+    </div>
+    <div id="criticalError">
+      <span></span>
+    </div>
+    <div id="startGameCont">
+      <div>
+        <img id="pairsLogo" src="public/assets/logo_text_beta.png" />
+        <div id="initPage">
+          <button class="startButton greenButton" onclick="requestGame()">Create Game</button>
+          <button class="startButton blueButton" onclick="showJoinScreen()">Join Game</button>
+        </div>
+        <div id="launchPage" style="display:none">
+          <div style="width:100%;height:auto;display:flex;margin-top:5px;">
+            <input type="text" id="nameChange" />
+            <svg id="confirmName" role="button" onclick="requestRename()" viewBox="0 0 24 24">
+              <title>Change Name</title>
+              <path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z" />
+            </svg>
+          </div>
+          <div style="width:70%;display:block;margin:auto;height:4px;background:#999;margin-top:5px;border-radius:2px;"></div>
+          <div id="joinedPlayers">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div style="width:70%;display:block;margin:auto;height:4px;background:#999;margin-top:5px;border-radius:2px;"></div>
+          <button id="startGame" onclick="requestLaunch()">Start Game</button>
+          <span id="joinCode"></span>
+        </div>
+        <div id="joinPage" style="display:none">
+          <input type="number" id="joinInput" placeholder="Code" oninput="askToJoin()" />
+        </div>
+      </div>
+    </div>
+    <div id="endGameCont">
+      <div>
+        <span id="endGameMess"></span>
+        <div id="endGameScores" style="width:100%;height:auto;"></div>
+      </div>
+    </div>
+    <div id="forehead">
+      <img id="mainLogo" src="public/assets/logo_text_beta.png" />
+      <img id="secoLogo" src="public/assets/logo.png" />
+    </div>
+    <div id="adaptCont">
+      <div id="playerCarousel">
+        <div class="playerTab" onclick="goToPlayer(0)" style="border-top-color:rgb(83,246,112)">Quinn &middot;</div>
+        <div class="playerTab" onclick="goToPlayer(1)">Ian</div>
+        <div class="playerTab" onclick="goToPlayer(2)">Joen</div>
+        <div class="playerTab" onclick="goToPlayer(3)">Griffin</div>
+        <div class="playerTab" onclick="goToPlayer(4)">Adrian</div>
+        <div class="playerTab" onclick="goToPlayer(5)">Aimee</div>
+      </div>
+      <div id="playerScores">
+        <div class="playerScoreCont" style="display:flex;">
+          <div class="playerScore">0PTS</div>
+          <div class="playerSets"></div>
+        </div>
+        <div class="playerScoreCont">
+          <div class="playerScore">1PT</div>
+        </div>
+        <div class="playerScoreCont">
+          <div class="playerScore">2PTS</div>
+        </div>
+        <div class="playerScoreCont">
+          <div class="playerScore">3PTS</div>
+        </div>
+        <div class="playerScoreCont">
+          <div class="playerScore">4PTS</div>
+        </div>
+        <div class="playerScoreCont">
+          <div class="playerScore">5PTS</div>
+        </div>
+      </div>
+      <div id="tableCont">
+        <div id="actionCont">
+          <div class="playButtonCont">
+            <button class="playButton" onclick="requestDraw()">Draw</button>
+          </div>
+          <div class="playButtonCont">
+            <button class="playButton" onclick="prime('challenge')">Challenge</button>
+          </div>
+          <div class="playButtonCont">
+            <button class="playButton" onclick="prime('takeplay')">Take/Play</button>
+          </div>
+          <div class="playButtonCont">
+            <button class="playButton" onclick="prime('steal')">Steal/Add</button>
+          </div>
+          <div class="playButtonCont">
+            <button class="confirmButton disabled" onclick="confirmPlay()">Confirm</button>
+          </div>
+        </div>
+        <div id="vertical"></div>
+        <div id="cardsCont">
+          <div id="challengeCont">
+            <span>I want to challenge:</span>
+            <div class="challengeRow" style="overflow-x:auto"></div>
+            <span>for:</span>
+            <div class="challengeRow" style="justify-content:space-evenly"></div>
+          </div>
+          <div id="stealCont">
+            <span>Choose a set to steal or add to:</span>
+            <div id="stealFlex"></div>
+          </div>
+          <div class="cardHalf">
+            <div style="height:100%;width:10px;display:none;flex-shrink:0;"></div>
+          </div>
+          <div id="horizontal"></div>
+          <div class="cardHalf">
+            <div style="height:100%;width:10px;display:none;flex-shrink:0;"></div>
+          </div>
+        </div>
+      </div>
+      <span id="message"></span>
+    </div>
+  </body>
+</html>
