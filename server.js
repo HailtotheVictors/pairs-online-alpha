@@ -6,6 +6,7 @@ app.use('/public', express.static(path.resolve(__dirname, 'public')));
 app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 });
+app.listen(process.env.PORT || 80);
 //app.listen(5000, () => console.log('Listening on http port 5000'));
 const websocketServer = require('websocket').server;
 //const httpServer = http.createServer();
