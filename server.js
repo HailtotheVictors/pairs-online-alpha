@@ -1,6 +1,5 @@
 console.log('Hello from server.js');
 const WebSocket = require('ws');
-const wsServer = new WebSocket.Server();
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -12,6 +11,8 @@ app.get('/', function(req, res) {
 var server = app.listen(port, function () {
   console.log(`Listening on ${port}`);
 });
+const wsPort = process.env.PORT || 80;
+const wsServer = new WebSocket.Server(port:wsPort);
 
 var clients = {};
 var games = {};
