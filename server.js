@@ -1,4 +1,4 @@
-const wsServer = require('ws').server;
+/*const wsServer = require('ws').server;
 var express = require('express');
 var path = require('path');
 var app = express();
@@ -10,7 +10,24 @@ app.get('/', function(req, res) {
 var server = app.listen(port, function () {
   console.log(`Listening on ${port}`);
 });
-const wsPort = process.env.PORT || 80;
+const wsPort = process.env.PORT || 80;*/
+
+var PORT = process.env.PORT || 5000;
+var express = require('express');
+var app = express();
+var path = require('path');
+
+var http = require('http');
+var server = http.Server(app);
+
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
+app.get('/',function (req, res) {
+  res.sendFile(__dirname + '/public/index.html');
+});
+
+server.listen(PORT, function() {
+  console.log(`Chat server running on port ${port}`);
+});
 
 var clients = {};
 var games = {};
