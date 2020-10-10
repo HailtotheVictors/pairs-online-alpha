@@ -29,6 +29,10 @@ server.listen(PORT, function() {
   console.log(`Chat server running on port ${port}`);
 });
 
+var WebSocketServer = require('ws').Server;
+var wsServer = new WebSocketServer({server: server});
+console.log("websocket server created")
+
 var clients = {};
 var games = {};
 const adjs=['Quiet','Lucky','Happy','Royal','Funny','Crazy','Noble','Jolly','Bland','Shiny','Eager','Salty','Fuzzy','Whiny','Fancy','Moody'];
