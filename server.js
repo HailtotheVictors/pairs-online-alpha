@@ -1,39 +1,15 @@
-/*const http = require('http');
-var path = require('path');
+const wsServer = require('ws').Server;
 var express = require('express');
+var path = require('path');
 var app = express();
-app.use('/public', express.static(path.resolve(__dirname, 'public')));
-app.listen(process.env.PORT || 3000);
-app.get('/',function (req, res) {
-  res.sendFile(__dirname + '/public/index.html')
+var router = express.Router();
+var port = process.env.PORT || 3000;
+app.get('/', function(req, res) {
+    res.sendFile(path.join(__dirname + '/index.html'));
 });
-//app.listen(5000, () => console.log('Listening on http port 5000'));
-//const websocketServer = require('websocket').server;
-//const httpServer = http.createServer();
-//var httpServer = http.createServer();
-//httpServer.listen(process.env.PORT || 8080);
-const { server } = require('ws');
-console.log('x');
-const wsServer = new Server({ server });
-//httpServer.listen(9090, () => console.log('Listening on ws port 9090'));
-/*const wsServer = new websocketServer({
-  'httpServer': httpServer
-});*/
-
-const express = require('express');
-const newServer = require('ws');
-const path = require('path');
-
-const PORT = process.env.PORT || 3000;
-
-const app = express();
-app.use('/public', express.static(path.resolve(__dirname, 'public')));
-app.listen(PORT, () => console.log(`Listening on http port ${PORT}`));
-app.get('/',function (req, res) {
-  res.sendFile(__dirname + '/public/index.html')
+var server = app.listen(port, function () {
+  console.log(`Listening on ${port}`);
 });
-
-const wsServer = new Server(newServer);
 
 var clients = {};
 var games = {};
