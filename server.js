@@ -1,17 +1,3 @@
-/*const wsServer = require('ws').server;
-var express = require('express');
-var path = require('path');
-var app = express();
-var router = express.Router();
-var port = process.env.PORT || 3000;
-app.get('/', function(req, res) {
-  res.sendFile(path.join(__dirname + '/index.html'));
-});
-var server = app.listen(port, function () {
-  console.log(`Listening on ${port}`);
-});
-const wsPort = process.env.PORT || 80;*/
-
 var PORT = process.env.PORT || 5000;
 var express = require('express');
 var app = express();
@@ -24,14 +10,10 @@ app.use('/public', express.static(path.resolve(__dirname, 'public')));
 app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
-
-server.listen(PORT, function() {
-  console.log(`Chat server running on port ${PORT}`);
-});
+server.listen(PORT);
 
 var WebSocketServer = require('ws').Server;
 var wsServer = new WebSocketServer({server: server});
-console.log("websocket server created")
 
 var clients = {};
 var games = {};
@@ -42,9 +24,8 @@ var activeGames = 0;
 wsServer.on('request', request => {
   //connect
   const connection = request.accept(null, request.origin);
-  connection.on('open', () => console.log('opened!'));
+  //connection.on('open', () => console.log('opened!'));
   connection.on('close', () => {
-    console.log('closed!');
     //getGameFromPlayer();
     let id;
     for (let client in clients) {
@@ -126,7 +107,6 @@ wsServer.on('request', request => {
   connection.on("message", message => {
     let result = JSON.parse(message.utf8Data);
     //I have received a message from the client
-    console.log('Incoming: ' + result.method);
     if (result.method == 'create') {
       //create player object
       if (activeGames >= 3) {
