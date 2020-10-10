@@ -22,9 +22,10 @@ const animals = ['Alpaca','Ferret','Monkey','Marmot','Turtle','Walrus'];
 var activeGames = 0;
 
 wsServer.on('request', request => {
+  console.log('hello');
   //connect
   const connection = request.accept(null, request.origin);
-  //connection.on('open', () => console.log('opened!'));
+  connection.on('open', () => console.log('opened!'));
   connection.on('close', () => {
     //getGameFromPlayer();
     let id;
@@ -106,6 +107,7 @@ wsServer.on('request', request => {
   });
   connection.on("message", message => {
     let result = JSON.parse(message.utf8Data);
+    console.log(result.method);
     //I have received a message from the client
     if (result.method == 'create') {
       //create player object

@@ -1,5 +1,9 @@
-let ws = new WebSocket("ws://localhost:9090");
-ws.addEventListener("close",function(){
+var HOST = location.origin.replace(/^http/, 'ws');
+var ws = new WebSocket(HOST);
+ws.addEventListener('open',function(){
+  console.log('open');
+});
+ws.addEventListener('close',function(){
   if (document.getElementById('criticalError').style.display != 'flex' && document.getElementById('endGameCont').style.display != 'flex') {
     setTimeout(function() { criticalError('An unknown error occurred'); }, 500);
   }
