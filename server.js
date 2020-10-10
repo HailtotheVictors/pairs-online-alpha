@@ -8,11 +8,11 @@ app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 });
 //app.listen(5000, () => console.log('Listening on http port 5000'));
-const websocketServer = require('websocket').server;
+//const websocketServer = require('websocket').server;
 //const httpServer = http.createServer();
 //var httpServer = http.createServer();
 //httpServer.listen(process.env.PORT || 8080);
-const { Server } = require('websocket');
+const { Server } = require('ws');
 const wsServer = new Server({ server });
 //httpServer.listen(9090, () => console.log('Listening on ws port 9090'));
 /*const wsServer = new websocketServer({
