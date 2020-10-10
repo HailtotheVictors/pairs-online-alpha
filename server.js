@@ -1,5 +1,5 @@
 console.log('Hello from server.js');
-const webSocket = require('ws');
+const WebSocket = require('ws');
 const wsServer = new WebSocket.Server();
 var express = require('express');
 var path = require('path');
