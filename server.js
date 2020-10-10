@@ -21,7 +21,7 @@ const wsServer = new Server({ server });
 });*/
 
 const express = require('express');
-const { server } = require('ws');
+const newServer = require('ws');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
@@ -33,7 +33,7 @@ app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html')
 });
 
-const wsServer = new Server({ server });
+const wsServer = new Server(newServer);
 
 var clients = {};
 var games = {};
