@@ -12,10 +12,11 @@
   "dependencies": {
     "express": "^4.17.1",
     "path": "^0.12.7",
-    "websocket": "^1.0.31"
+    "websocket": "^1.0.31",
+    "ws": "^7.3.1"
   },
   "devDependencies": {},
-  "description": "",
+  "description": "Pairs online game",
   "engines": {
     "node": "12.16.3"
   }
