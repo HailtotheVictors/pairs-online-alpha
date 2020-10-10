@@ -12,7 +12,7 @@ var server = app.listen(port, function () {
   console.log(`Listening on ${port}`);
 });
 const wsPort = process.env.PORT || 80;
-const wsServer = new WebSocket.Server(port:wsPort);
+const wsServer = new WebSocket.Server({port:wsPort});
 
 var clients = {};
 var games = {};
