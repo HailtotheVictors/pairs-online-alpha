@@ -1,3 +1,4 @@
+console.log('Hello from server.js');
 const wsServer = require('ws').Server;
 var express = require('express');
 var path = require('path');
@@ -5,7 +6,7 @@ var app = express();
 var router = express.Router();
 var port = process.env.PORT || 3000;
 app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname + '/index.html'));
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 var server = app.listen(port, function () {
   console.log(`Listening on ${port}`);
