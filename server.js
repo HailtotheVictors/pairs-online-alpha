@@ -26,7 +26,7 @@ app.get('/',function (req, res) {
 });
 
 server.listen(PORT, function() {
-  console.log(`Chat server running on port ${port}`);
+  console.log(`Chat server running on port ${PORT}`);
 });
 
 var WebSocketServer = require('ws').Server;
