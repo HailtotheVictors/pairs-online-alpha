@@ -1,4 +1,4 @@
-const http = require('http');
+/*const http = require('http');
 var path = require('path');
 var express = require('express');
 var app = express();
@@ -19,6 +19,21 @@ const wsServer = new Server({ server });
 /*const wsServer = new websocketServer({
   'httpServer': httpServer
 });*/
+
+const express = require('express');
+const { Server } = require('ws');
+const path = require('path');
+
+const PORT = process.env.PORT || 3000;
+
+const app = express();
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
+app.listen(PORT, () => console.log(`Listening on http port ${PORT}`));
+app.get('/',function (req, res) {
+  res.sendFile(__dirname + '/public/index.html')
+});
+
+const wsServer = new Server({ server });
 
 var clients = {};
 var games = {};
