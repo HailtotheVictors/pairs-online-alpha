@@ -12,7 +12,7 @@ app.get('/',function (req, res) {
 //const httpServer = http.createServer();
 //var httpServer = http.createServer();
 //httpServer.listen(process.env.PORT || 8080);
-const { server } = require('ws');
+const { server } = require('websocket');
 console.log('x');
 const wsServer = new Server({ server });
 //httpServer.listen(9090, () => console.log('Listening on ws port 9090'));
