@@ -21,7 +21,7 @@ const wsServer = new Server({ server });
 });*/
 
 const express = require('express');
-const { Server } = require('ws');
+const { server } = require('ws');
 const path = require('path');
 
 const PORT = process.env.PORT || 3000;
