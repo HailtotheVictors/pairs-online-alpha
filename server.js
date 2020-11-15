@@ -10,7 +10,7 @@ var server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
 const WebSocket = require('ws');
 const wss = new WebSocket.Server({server : server});
 
-wsServer.on('connection', (ws) => {
+wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
 });
@@ -21,12 +21,12 @@ const adjs=['Quiet','Lucky','Happy','Royal','Funny','Crazy','Noble','Jolly','Bla
 const animals = ['Alpaca','Ferret','Monkey','Marmot','Turtle','Walrus'];
 var activeGames = 0;
 
-wsServer.on('request', request => {
+wss.on('connection', ws => {
   console.log('hello');
   //connect
-  const connection = request.accept(null, request.origin);
-  connection.on('open', () => console.log('opened!'));
-  connection.on('close', () => {
+  //const connection = request.accept(null, request.origin);
+  ws.on('open', () => console.log('opened!'));
+  ws.on('close', () => {
     //getGameFromPlayer();
     let id;
     for (let client in clients) {
@@ -105,8 +105,8 @@ wsServer.on('request', request => {
       }
     }
   });
-  connection.on("message", message => {
-    let result = JSON.parse(message.utf8Data);
+  ws.on('message', message => {
+    let result = JSON.parse(message);
     console.log(result.method);
     //I have received a message from the client
     if (result.method == 'create') {
