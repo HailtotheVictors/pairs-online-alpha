@@ -1,4 +1,4 @@
-var HOST = location.origin.replace(/^http/, 'ws');
+var HOST = location.origin.replace(/^http/, 'ws')
 var ws = new WebSocket(HOST);
 ws.addEventListener('open',function(){
   console.log('open');

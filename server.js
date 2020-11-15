@@ -1,19 +1,19 @@
-var PORT = process.env.PORT || 5000;
-var express = require('express');
-var app = express();
+const PORT = process.env.PORT || 3000;
+const express = require('express');
+const app = express();
 var path = require('path');
-
-var http = require('http');
-var server = http.Server(app);
-
-app.use('/public', express.static(path.resolve(__dirname, 'public')));
+app.use('/public', express.static(path.resolve(__dirname, 'public0')));
 app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
-server.listen(PORT);
+var server = app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+const WebSocket = require('ws');
+const wss = new WebSocket.Server({server : server});
 
-var WebSocketServer = require('ws').Server;
-var wsServer = new WebSocketServer({server: server});
+wsServer.on('connection', (ws) => {
+  console.log('Client connected');
+  ws.on('close', () => console.log('Client disconnected'));
+});
 
 var clients = {};
 var games = {};
