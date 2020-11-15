@@ -29,7 +29,7 @@ wss.on('connection', ws => {
     //getGameFromPlayer();
     let id;
     for (let client in clients) {
-      if (clients[client].connection === connection) {
+      if (clients[client].connection === ws) {
         id = client;
         break;
       }
@@ -312,7 +312,7 @@ wss.on('connection', ws => {
           method: 'error',
           message: 'You cannot draw with 6 or more cards in hand'
         };
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
       } else if (player.hand.length == 0) {
         dealCards(result.clientId,2);
       } else {
@@ -387,7 +387,7 @@ wss.on('connection', ws => {
           method: 'removefromhand',
           cards: removeFromHand
         }
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
       }
       if (removeFromTable.length > 0) { //remove card(s) from game table
         let payLoad2 = {
@@ -418,7 +418,7 @@ wss.on('connection', ws => {
           method: 'error',
           text: 'You do not have a card of that value'
         };
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
         return;
       }
       //get challenged player
@@ -434,7 +434,7 @@ wss.on('connection', ws => {
           method: 'error',
           text: 'Player was not found'
         };
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
         return;
       }
       //find all cards in opponents that match challenged value
@@ -465,7 +465,7 @@ wss.on('connection', ws => {
           method: 'removefromhand',
           cards: usedCards
         };
-        connection.send(JSON.stringify(payLoad2));
+        ws.send(JSON.stringify(payLoad2));
         let announcement = {
           method: 'message',
           message: `${player.name} unsuccessfully challenged ${challengedPlayer.name} for ${getCardValue(result.card)}`
@@ -488,7 +488,7 @@ wss.on('connection', ws => {
           method: 'removefromhand',
           cards: usedCards
         }
-        connection.send(JSON.stringify(payLoad2));
+        ws.send(JSON.stringify(payLoad2));
         let newSet = foundCards.concat(usedCards);
         player.inSet.push(newSet);
         let announcement = {
@@ -514,7 +514,7 @@ wss.on('connection', ws => {
           method: 'error',
           text: 'Player not identified'
         };
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
         return;
       }
       //check that player has that set
@@ -530,7 +530,7 @@ wss.on('connection', ws => {
           method: 'error',
           text: 'Set not identified'
         };
-        connection.send(JSON.stringify(payLoad));
+        ws.send(JSON.stringify(payLoad));
         return;
       }
       //remove set from stolen player and add it to stealing player w/ extra cards
@@ -546,7 +546,7 @@ wss.on('connection', ws => {
         method: 'removefromhand',
         cards: cardsToAdd
       };
-      connection.send(JSON.stringify(payLoad));
+      ws.send(JSON.stringify(payLoad));
       player.inSet.push(stolenSet.concat(cardsToAdd));
       let mess;
       if (player.name != stolenPlayer.name) {
