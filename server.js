@@ -567,7 +567,7 @@ wss.on('connection', ws => {
   //new clients
   let clientId = guid(clients);
   clients[clientId] = {
-    connection: connection
+    connection: ws
   };
   let payLoad = {
     method: 'connected',
