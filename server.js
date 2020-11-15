@@ -573,7 +573,7 @@ wss.on('connection', ws => {
     method: 'connected',
     clientId: clientId
   };
-  connection.send(JSON.stringify(payLoad));
+  ws.send(JSON.stringify(payLoad));
 });
 
 //resources
