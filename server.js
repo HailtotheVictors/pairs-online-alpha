@@ -2,7 +2,7 @@ const PORT = process.env.PORT || 3000;
 const express = require('express');
 const app = express();
 var path = require('path');
-app.use('/public', express.static(path.resolve(__dirname, 'public0')));
+app.use('/public', express.static(path.resolve(__dirname, 'public')));
 app.get('/',function (req, res) {
   res.sendFile(__dirname + '/public/index.html');
 });
@@ -22,7 +22,6 @@ const animals = ['Alpaca','Ferret','Monkey','Marmot','Turtle','Walrus'];
 var activeGames = 0;
 
 wss.on('connection', ws => {
-  console.log('hello');
   //connect
   //const connection = request.accept(null, request.origin);
   ws.on('open', () => console.log('opened!'));
@@ -107,7 +106,6 @@ wss.on('connection', ws => {
   });
   ws.on('message', message => {
     let result = JSON.parse(message);
-    console.log(result.method);
     //I have received a message from the client
     if (result.method == 'create') {
       //create player object
