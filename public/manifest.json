@@ -3,8 +3,9 @@
     "background_color": "#eee",
     "display": "standalone",
     "scope": "/",
-    "start_url": "/",
+    "start_url": "/public/index.html",
     "app_name": "Pairs Online",
+    "name": "Pairs Online",
     "short_name": "Pairs",
     "icons": [
         {
