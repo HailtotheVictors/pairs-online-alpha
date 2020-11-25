@@ -1,12 +1,27 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script>
+  	if ('serviceWorker' in navigator) {
+  		window.addEventListener('load', function() {
+  			navigator.serviceWorker.register('/public/scripts/worker.js').then(function(registration) {
+  				// Registration was successful
+  				console.log('ServiceWorker registration successful with scope: ', registration.scope);
+  			}, function(err) {
+  				// registration failed :(
+  				console.log('ServiceWorker registration failed: ', err);
+  			});
+  		});
+  	}
+  	</script>
+  	<meta name="theme-color" content="#53f56b"/>
     <link rel="shortcut icon" href="public/assets/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="public/scripts/script.js"></script>
     <script src="public/scripts/carddata.js"></script>
     <link rel="stylesheet" href="public/css/styles.css" />
     <link rel="stylesheet" href="public/css/cards.css" />
+    <meta charset="UTF-8">
     <title>Pairs</title>
   </head>
   <body>
@@ -61,12 +76,12 @@
     </div>
     <div id="adaptCont">
       <div id="playerCarousel">
-        <div class="playerTab" onclick="goToPlayer(0)" style="border-top-color:rgb(83,246,112)">Quinn &middot;</div>
-        <div class="playerTab" onclick="goToPlayer(1)">Ian</div>
-        <div class="playerTab" onclick="goToPlayer(2)">Joen</div>
-        <div class="playerTab" onclick="goToPlayer(3)">Griffin</div>
-        <div class="playerTab" onclick="goToPlayer(4)">Adrian</div>
-        <div class="playerTab" onclick="goToPlayer(5)">Aimee</div>
+        <div class="playerTab" onclick="goToPlayer(0)" style="border-top-color:rgb(83,246,112)">Player 1 &middot;</div>
+        <div class="playerTab" onclick="goToPlayer(1)">Player 2</div>
+        <div class="playerTab" onclick="goToPlayer(2)">Player 3</div>
+        <div class="playerTab" onclick="goToPlayer(3)">Player 4</div>
+        <div class="playerTab" onclick="goToPlayer(4)">Player 5</div>
+        <div class="playerTab" onclick="goToPlayer(5)">Player 6</div>
       </div>
       <div id="playerScores">
         <div class="playerScoreCont" style="display:flex;">
